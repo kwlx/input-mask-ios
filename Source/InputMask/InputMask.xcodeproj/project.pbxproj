@@ -59,6 +59,7 @@
 		8ACF16E81D65B9A4004F3374 /* InterfaceBuilderSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACF16E71D65B9A4004F3374 /* InterfaceBuilderSupport.swift */; };
 		8AE42E652094B6AA00D9D3E2 /* ReversedMaskTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE42E642094B6AA00D9D3E2 /* ReversedMaskTextFieldDelegate.swift */; };
 		8AE8CA091E4489B400EDC9C4 /* YearCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE8CA081E4489B400EDC9C4 /* YearCase.swift */; };
+		D5428C0320F5D78B00FCDC1E /* LXMaskedTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5428C0220F5D78B00FCDC1E /* LXMaskedTextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		8ACF16E71D65B9A4004F3374 /* InterfaceBuilderSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderSupport.swift; sourceTree = "<group>"; };
 		8AE42E642094B6AA00D9D3E2 /* ReversedMaskTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedMaskTextFieldDelegate.swift; sourceTree = "<group>"; };
 		8AE8CA081E4489B400EDC9C4 /* YearCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearCase.swift; sourceTree = "<group>"; };
+		D5428C0220F5D78B00FCDC1E /* LXMaskedTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXMaskedTextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				8A01854C1D64ABCC007B5EBD /* MaskedTextFieldDelegate.swift */,
 				8A485DD91DD4735A009351FB /* PolyMaskTextFieldDelegate.swift */,
 				8AE42E642094B6AA00D9D3E2 /* ReversedMaskTextFieldDelegate.swift */,
+				D5428C0220F5D78B00FCDC1E /* LXMaskedTextFieldDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				8AB1E8891D63753E00892C3B /* Compiler.swift in Sources */,
 				8A076E0220923F830056476F /* Notation.swift in Sources */,
 				8AB1E8931D63773400892C3B /* Next.swift in Sources */,
+				D5428C0320F5D78B00FCDC1E /* LXMaskedTextFieldDelegate.swift in Sources */,
 				8A485DDA1DD4735A009351FB /* PolyMaskTextFieldDelegate.swift in Sources */,
 				8AB1E8861D63746400892C3B /* CaretString.swift in Sources */,
 				8AE42E652094B6AA00D9D3E2 /* ReversedMaskTextFieldDelegate.swift in Sources */,

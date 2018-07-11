@@ -222,6 +222,51 @@ public class Mask: CustomDebugStringConvertible, CustomStringConvertible {
         
         return length
     }
+
+    public func changeRange(_ range: NSRange) -> NSRange {
+        var length = range.length
+        var location = range.location
+        if length > 0 && location != 0 {
+            let states = getStates(to: location)
+            let state = states[location]
+            if state is FreeState {
+                location -= 1
+                length += 1
+                var stateBefore = states[location]
+                while stateBefore is FreeState {
+                    if location == 0 {
+                        break
+                    }
+                    location -= 1
+                    length += 1
+                    stateBefore = states[location]
+                }
+            } else {
+                var stateBefore = states[location - 1]
+                while stateBefore is FreeState {
+                    location -= 1
+                    length += 1
+                    if location == 0 {
+                        break
+                    }
+                    stateBefore = states[location - 1]
+                }
+            }
+            return NSMakeRange(location, length)
+        }
+        return range
+    }
+
+    public func shouldModifyText(_ text: String, inRange range: NSRange, withText string: String) -> Bool {
+        if text.count == totalTextLength && range.length < string.count {
+            return false
+        }
+        if text.count == totalTextLength && range.length > 0 {
+            let isOnlyFreeStates = isOnlyStates(ofTypes: [FreeState.self], inRange: range)
+            return !isOnlyFreeStates
+        }
+        return true
+    }
     
     public var debugDescription: String {
         get {
@@ -319,6 +364,48 @@ private extension Mask {
         }
         
         return length
+    }
+
+    func getStates(to index: Int) -> [State] {
+        var state: State? = self.initialState
+        var states: [State] = []
+        var length: Int = 0
+        while let s: State = state, !(state is EOLState) && length <= index {
+            states.append(s)
+            length += 1
+            state = s.child
+        }
+        return states
+    }
+
+    func getState(on index: Int) -> State? {
+        var state: State? = self.initialState
+        var length: Int = 0
+        while let s: State = state, !(state is EOLState) && length < index {
+            length += 1
+            state = s.child
+        }
+        return state
+    }
+
+    func isOnlyStates(ofTypes stateTypes: [State.Type], inRange range: NSRange) -> Bool {
+        var state: State? = getState(on: range.location)
+        var length: Int = 0
+        while let s: State = state, !(state is EOLState) && length < range.length {
+            var isType = false
+            for stateType in stateTypes {
+                if type(of: s) == stateType {
+                    isType = true
+                    break
+                }
+            }
+            if !isType {
+                return false
+            }
+            length += 1
+            state = s.child
+        }
+        return true
     }
     
 }
