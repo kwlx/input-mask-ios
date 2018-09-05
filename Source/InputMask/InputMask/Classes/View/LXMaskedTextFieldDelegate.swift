@@ -9,7 +9,6 @@
 import Foundation
 
 open class LXMaskedTextFieldDelegate: MaskedTextFieldDelegate {
-    private var _extractedValue: String = ""
 
     override open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let extractedValue: String
@@ -24,14 +23,12 @@ open class LXMaskedTextFieldDelegate: MaskedTextFieldDelegate {
         } else {
             if let text = textField.text, !self.mask.shouldModifyText(text, inRange: range, withText: string) {
                 setCaretPosition(range.location, inField: textField)
-                extractedValue = _extractedValue
-                complete = true
+                (extractedValue, complete) = self.modifyText(inRange: range, inField: textField, withText: "")
             } else {
                 (extractedValue, complete) = self.modifyText(inRange: range, inField: textField, withText: string)
             }
         }
 
-        self._extractedValue = extractedValue
         self.listener?.textField?(
             textField,
             didFillMandatoryCharacters: complete,
